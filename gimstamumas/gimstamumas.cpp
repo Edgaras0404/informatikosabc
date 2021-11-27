@@ -19,19 +19,8 @@ void input ( int &n, std::string lName[], std::string fName[], char gender[], in
     in.close(); 
 }
 
+void count ( int &males, int &females, char gender[], int n ) {
 
-int main () {
-    int n;  
-    std::string fName[10000];
-    std::string lName[10000];
-    char gender[10000];
-    int year[10000];
-    int month[10000];
-    int day[10000];
-
-    input ( n, lName, fName, gender, year, month, day );
-
-    int males = 0, females = 0;
     for (int i = 0; i < n; i++)
     {
         if (gender[i] == 'v')
@@ -43,9 +32,10 @@ int main () {
         }
          
     }
-    std::string mpfName, mpmName;
-    int mpfC = 0, mpmC = 0;
-    
+}
+
+void findPopNames( std::string &mpfName, std::string &mpmName, int &mpfC, int &mpmC, char gender[], std::string fName[], int n ) {
+
     for (int i = 0; i < n; i++)
     {
         int reocc = 0;
@@ -83,6 +73,30 @@ int main () {
         }
     }
 
+}
+
+
+int main () {
+    int n;  
+    std::string fName[10000];
+    std::string lName[10000];
+    char gender[10000];
+    int year[10000];
+    int month[10000];
+    int day[10000];
+
+    input ( n, lName, fName, gender, year, month, day );
+
+    int males = 0, females = 0;
+    count( males, females, gender, n);
+
+   
+    std::string mpfName, mpmName;
+    int mpfC = 0, mpmC = 0;
+
+    findPopNames(mpfName, mpmName, mpfC, mpmC, gender, fName, n ); 
+    
+
     int months[12] = { 0 };
     for (int i = 0; i < 12; i++)
     {
@@ -99,10 +113,6 @@ int main () {
         out << months[i] << " ";
     }
     out << std::endl;  
-    
-    
-
-
-    
+    out.close(); 
     return 0;
 }
